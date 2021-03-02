@@ -15,13 +15,18 @@
         <tbody>
             @foreach ($articles as $article)    
                 <tr>
-                    <td scope="row">{{ $article->id }}</td>
+                    <td>{{ $article->id }}</td>
                     <td>{{ $article->title }}</td>
                     <td>{{ $article->slug }}</td>
                     <td>
-                        <a href="{{ route('admin.articles.show', ['article'=>$article->id]) }}" class="btn btn-primary"><i class="fas fa-eye fa-xs fa-fw"></i></a>
-                        <a href="{{ route('admin.articles.edit', ['article'=>$article->id]) }}" class="btn btn-success"><i class="fas fa-pencil-ruler fa-sx fa-fw"></i></a>
-                        <a href="#" class="btn btn-danger"> <i class="fas fa-trash fa-xs fa-fw"></i></a>
+                        <a href="{{ route('admin.articles.show', ['article'=>$article->slug]) }}" class="btn btn-primary"><i class="fas fa-eye fa-xs fa-fw"></i></a>
+                        <a href="{{ route('admin.articles.edit', ['article'=>$article->slug]) }}" class="btn btn-success"><i class="fas fa-pencil-ruler fa-sx fa-fw"></i></a>    
+
+                        <form action="{{ route('admin.articles.destroy', ['article'=>$article->slug]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger mt-1"><i class="fas fa-trash fa-xs fa-fw"></i></button>
+                        </form>
 
                     </td>
                 </tr>
