@@ -26,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.articles.create');
     }
 
     /**
@@ -37,7 +37,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article;
+        $article->title = request('title');
+        $article->body = request('body');
+
+        $article->save();
+
+        return redirect()->route('admin.articles.index');
     }
 
     /**
@@ -71,11 +77,6 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $validatedData = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
-
         $data = $request->all();
         $article->update($data); 
 

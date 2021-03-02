@@ -3,6 +3,8 @@
 @section('content')
     <h1>All articles for the admin</h1>
 
+    <a  href="{{ route('admin.articles.create') }}" class="btn btn-primary my-3">New article</a>
+
     <table class="table">
         <thead>
             <tr>
